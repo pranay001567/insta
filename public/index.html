@@ -1,1 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Instagram Reels Scheduler</title>
+</head>
+<body>
+    <h1>Upload Reels</h1>
+    <form id="uploadForm">
+        <input type="file" name="file" required />
+        <button type="submit">Upload</button>
+    </form>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const response = await fetch('/api/reels/upload', { method: 'POST', body: formData });
+            const data = await response.json();
+            alert(data.success ? 'Upload successful!' : 'Upload failed.');
+        });
+    </script>
+</body>
+</html>
 
